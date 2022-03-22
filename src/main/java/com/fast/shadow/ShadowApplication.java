@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ShandowApplication {
+public class ShadowApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ShandowApplication.class, args);
+        SpringApplication.run(ShadowApplication.class, args);
     }
 
 }
