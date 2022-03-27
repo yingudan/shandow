@@ -5,6 +5,8 @@ import com.fast.shadow.model.User;
 import com.fast.shadow.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -44,6 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public int addUsers(List<User> users) {
         if (users == null || users.size() < 1) {
             return -1;

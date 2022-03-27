@@ -1,10 +1,14 @@
 package com.fast.shadow.controller;
 
 import com.fast.shadow.model.User;
+import com.fast.shadow.service.OperaUserService;
 import com.fast.shadow.service.UserService;
+import com.fast.shadow.utils.BatchListUtil;
 import com.fast.shadow.utils.CreateDataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Auther: yingd [RipperF@hotmail.com]
@@ -16,14 +20,32 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/user/fastmybatis/")
 public class UserController {
 
-
     @Autowired
     UserService userService;
 
+    @Autowired
+    OperaUserService operaUserService;
+
+    @PostMapping("addBatchUser")
+    public String addBatchUser() {
+        for (int i = 0; i < 10; i++) {
+            List<User> users = CreateDataUtil.getUsers(100000);
+            List<List<User>> lists = BatchListUtil.groupList(users, 10000);
+            for (List<User> userList : lists) {
+                operaUserService.addBatchUser(userList);
+            }
+        }
+        return "addBatchUser" + "成功";
+    }
 
     @PostMapping("addUser")
     public String addUser() {
-        userService.addUser(CreateDataUtil.getUser());
+        try {
+            userService.addUser(CreateDataUtil.getUser());
+            Thread.sleep(4000l);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "以fastmybatis方式" + "添加一个对象数据成功";
     }
 
