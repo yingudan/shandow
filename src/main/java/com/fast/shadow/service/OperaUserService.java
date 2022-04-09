@@ -16,4 +16,15 @@ public interface OperaUserService {
 
 
     void addBatchUser(List<User> addList);
+
+    void waitBatchUser(List<User> addList);
+
+    void waitBatchUser2(List<User> addList);
+
+    void waitBatchUser4(List<User> addList);
+
+
+    void test();
+
+    void test2();
 }

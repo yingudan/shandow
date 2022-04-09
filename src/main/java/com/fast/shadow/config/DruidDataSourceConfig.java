@@ -26,6 +26,11 @@ public class DruidDataSourceConfig {
     @Bean
     public DruidDataSource druidDataSource() {
         DruidDataSource druidDataSource = new DruidDataSource();
+
+
+        druidDataSource.setRemoveAbandoned(true);
+        //设置超过5秒就退出
+        druidDataSource.setRemoveAbandonedTimeout(5);
         log.info("Datasource创建完成 ...");
         return druidDataSource;
     }

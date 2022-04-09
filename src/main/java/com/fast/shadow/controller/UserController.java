@@ -40,12 +40,7 @@ public class UserController {
 
     @PostMapping("addUser")
     public String addUser() {
-        try {
-            userService.addUser(CreateDataUtil.getUser());
-            Thread.sleep(4000l);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        userService.addUser(CreateDataUtil.getUser());
         return "以fastmybatis方式" + "添加一个对象数据成功";
     }
 
